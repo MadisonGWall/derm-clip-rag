@@ -335,7 +335,7 @@ TILE_B64 = [_placeholder_tile_b64(i) for i in range(3)]
 # Local dev reads from data/private/thumbnails/. On HF Space (no local private
 # data), get_thumbnail_dir downloads the snapshot from the private HF Dataset
 # using HF_TOKEN from st.secrets, caching after the first call.
-_HF_DATASET_REPO = "madwall/skinsight-ddi-images"
+_HF_DATASET_REPO = "madwall/ddi-thumbnails-private"
 
 
 def _slugify(name: str) -> str:

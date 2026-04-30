@@ -1,3 +1,15 @@
+---
+title: SkinSight AI
+emoji: 🔬
+colorFrom: purple
+colorTo: pink
+sdk: streamlit
+sdk_version: "1.56.0"
+app_file: app.py
+pinned: false
+short_description: Visual dermatology learning with CLIP retrieval and RAG
+---
+
 # derm-clip-rag
 
 > An interactive dermatology study tool combining CLIP visual retrieval with LangChain RAG explanations.
@@ -5,7 +17,7 @@
 <!-- TODO: replace with actual demo GIF once UI is built -->
 <!-- ![Demo](assets/demo.gif) -->
 
-**Live demo:** _TODO — Hugging Face Spaces URL_
+**Live demo:** https://huggingface.co/spaces/madwall/skin-sight-website
 
 ## What it Does
 
