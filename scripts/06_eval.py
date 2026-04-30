@@ -2,16 +2,13 @@
 """
 Evaluate zero-shot CLIP image-image retrieval on the top-7 conditions.
 
-Stratified 80/20 reference/query split (seed=42):
-- 80% of each condition's images → reference set
-- 20% → queries; for each, find K nearest in the reference set by cosine similarity
-- Score top-K retrieval accuracy (correct condition appears in top K)
-- Tally which condition was retrieved when the top-1 was wrong
+Score top-K retrieval accuracy (correct condition appears in top K)
 
-No training. CLIP is frozen. The split exists to prevent self-matches.
+80/20 reference/query split (seed=42):
+- Reference set: 80% of each condition's images. 
+- Query set: 20% of each condition's images
 
-Run:
-    python scripts/06_eval.py
+For each query image, find K nearest in the reference set by cosine similarity.
 """
 
 import json
@@ -28,10 +25,10 @@ SEED = 42
 TEST_SIZE = 0.2
 TOP_KS = (1, 3, 5)
 
+# Note: embeddings_full.pt is filtered to the top-7 conditions by
+# scripts/01_filter_labels.py
 
 def main():
-    # embeddings_full.pt is filtered to the top-7 conditions at source
-    # by scripts/01_filter_labels.py, so no further condition filter is needed.
     data = torch.load(EMB_PATH)
     embs = data["embeddings"]
     lbls = data["labels"]
@@ -39,17 +36,19 @@ def main():
     ref_idx, qry_idx = train_test_split(
         list(range(len(lbls))),
         test_size=TEST_SIZE,
-        stratify=lbls,
+        stratify=lbls, # line is Claude-assisted
         random_state=SEED,
     )
     ref_emb = embs[ref_idx]
-    ref_lbl = [lbls[i] for i in ref_idx]
+    ref_lbl = [lbls[i] for i in ref_idx] # line is Claude-assisted
     qry_emb = embs[qry_idx]
-    qry_lbl = [lbls[i] for i in qry_idx]
+    qry_lbl = [lbls[i] for i in qry_idx] # line is Claude-assisted
 
     sims = qry_emb @ ref_emb.T
     _, topk_idx = torch.topk(sims, k=max(TOP_KS), dim=1)
 
+    # claude-assisted with rest of code:
+    # computing accuracy/confusion & print statements
     accuracy = {}
     confusion = {}
     for k in TOP_KS:
