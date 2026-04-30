@@ -55,3 +55,7 @@ huggingface/
 *.pt.bak
 *.npy.bak
 scratch/
+
+# Claude Code project instructions (local only)
+CLAUDE.md
+.claude/
