@@ -1,51 +1,55 @@
 # Attribution
 
-## Dataset
+## Datasets
 
-**Stanford Diverse Dermatology Images (DDI)** — Daneshjou, R., Vodrahalli, K., Novoa, R. A., et al. (2022). "Disparities in dermatology AI performance on a diverse, curated clinical image set." *Science Advances*, 8(31).
+Daneshjou, R., Vodrahalli, K., Liang, Zou, J., & Chiou, A. (2024). DDI - Diverse Dermatology Images. Stanford University. https://doi.org/10.71718/kqee-3z39
 
-Governed by the Stanford AIMI Data Use Agreement. **Not redistributed by this repository.** Users must obtain access independently: https://aimi.stanford.edu/datasets/ddi-diverse-dermatology-images
+DermNet. https://dermnetnz.org/.
 
-## Model
+Note that condition descriptions in `data/public/kb/` are drafted from DermNet. Wording in KB is paraphrased by Claude but content is reviewed for clinical accuracy.
 
-**CLIP** — Radford, A., Kim, J. W., Hallacy, C., et al. (2021). "Learning Transferable Visual Models From Natural Language Supervision." *ICML.*
+## Sources
 
-OpenAI ViT-B/32 weights loaded via [open_clip](https://github.com/mlfoundations/open_clip) (MIT).
+Kaundinya, T., & Kundu, R. V. (2021). Diversity of Skin Images in Medical Texts: Recommendations for Student Advocacy in Medical Education. Journal of Medical Education and Curricular Development, 8, 238212052110258. https://doi.org/10.1177/23821205211025855.
 
-## Knowledge Base Sources
+Tadesse, G. A., Cintas, C., Varshney, K. R., Staar, P., Agunwa, C., Speakman, S., Jia, J., Bailey, E. E., Adelekun, A., Lipoff, J. B., Onyekaba, G., Lester, J. C., Rotemberg, V., Zou, J., & Daneshjou, R. (2023). Skin Tone Analysis for Representation in Educational Materials (STAR-ED) using machine learning. Npj Digital Medicine, 6(1), 1–10. https://doi.org/10.1038/s41746-023-00881-0.
 
-Condition descriptions in `data/public/kb/` are drafted from:
+## Models
 
-- **DermNet** — https://dermnetnz.org (CC BY-NC-ND 3.0 NZ)
-- **American Academy of Dermatology** — https://www.aad.org (educational use)
+- **CLIP (ViT-B/32)** — OpenAI weights loaded via [open_clip](https://github.com/mlfoundations/open_clip) (MIT). Image embedding and retrieval.
+- **sentence-transformers/all-MiniLM-L6-v2** — [model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (Apache 2.0). Knowledge-base text embeddings.
+- **Llama 3.1 8B** — `llama3.1:8b` via [Ollama](https://ollama.com/), governed by the [Llama 3.1 Community License](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE). Used once, locally to generate the cached flashcard explanations in `data/public/rag_cache.json`; not invoked at runtime.
+- **OpenAI `gpt-4o-mini`** — powers the live "Ask Questions" Q&A path at runtime. [OpenAI API Terms](https://openai.com/policies/terms-of-use).
 
-Wording is paraphrased; content reviewed for clinical accuracy. Educational use within this tool only — not a substitute for professional medical advice.
+## External libraries
 
-## Software Libraries
+- [PyTorch](https://pytorch.org)
+- [open_clip_torch](https://github.com/mlfoundations/open_clip)
+- [LangChain](https://github.com/langchain-ai/langchain)
+- [Chroma](https://github.com/chroma-core/chroma)
+- [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
+- [Streamlit](https://streamlit.io)
+- [Ollama](https://ollama.com) (MIT)
+- [openai](https://github.com/openai/openai-python)
+- [huggingface_hub](https://github.com/huggingface/huggingface_hub)
+- [pandas](https://pandas.pydata.org)
+- [numpy](https://numpy.org)
+- [scikit-learn](https://scikit-learn.org)
+- [Pillow](https://python-pillow.org)
 
-| Library | License | Purpose |
-|---|---|---|
-| PyTorch | BSD | Tensor ops + CLIP inference |
-| open_clip_torch | MIT | CLIP loader + preprocessing |
-| LangChain | MIT | RAG pipeline framework |
-| Chroma | Apache 2.0 | Vector store |
-| sentence-transformers | Apache 2.0 | KB text embeddings |
-| Streamlit | Apache 2.0 | Web UI |
-| Ollama | MIT | Local LLM (one-time explanation generation) |
 
 ## AI Assistance Disclosure
 
 Developed with assistance from **Claude (Anthropic)** for:
-
 - Design discussion and architecture planning
 - Boilerplate code generation (`src/`, `scripts/`)
 - Documentation drafting
+- Creating the web app
 
-All AI-generated code was reviewed, modified, and tested by the project author. Clinical content in the knowledge base was independently verified against DermNet source material. The author is solely responsible for the design decisions, the final code, and the privacy posture (see `CLAUDE.md` for data-handling rules).
+I used OpenAI's ChatGPT for:
+- Generating mockups of the website
+- Refining my prompt engineering for RAG
 
-## Citation
+I reviewed, modified, and tested all AI-generated code. I verified clinical content in the knowledge base against DermNet source material. I'm responsible for design decisions and the final code.
 
-```
-Wall, M. (2026). derm-clip-rag: A CLIP + RAG dermatology study tool.
-GitHub: https://github.com/madigwall/derm-clip-rag
-```
+I wrote the text for the website and then used AI to refine it.
