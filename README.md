@@ -43,7 +43,7 @@ For full setup, see [SETUP.md](SETUP.md).
 ## Video Links
 
 - **Demo video** (non-technical introduction): https://youtu.be/yvz81WB2qEk
-- **Technical walkthrough** (for developers - focuses on code structure and architecture): 
+- **Technical walkthrough** (for developers - focuses on code structure and architecture): youtube.com/watch?v=ybtVnThQJNA&feature=youtu.be
 
 ## Evaluation
 DDI image counts per condition per Fitzpatrick group, after filtering to the top-7 conditions by sample count.
