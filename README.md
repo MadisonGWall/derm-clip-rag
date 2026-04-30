@@ -17,7 +17,7 @@ short_description: Visual dermatology learning with CLIP retrieval and RAG
 <!-- TODO: replace with actual demo GIF once UI is built -->
 <!-- ![Demo](assets/demo.gif) -->
 
-**Live demo:** https://huggingface.co/spaces/madwall/skin-sight-website
+**Live demo:** https://madwall-skin-sight-website.hf.space/
 
 ## What it Does
 
