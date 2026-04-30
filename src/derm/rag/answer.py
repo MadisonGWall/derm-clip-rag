@@ -4,7 +4,7 @@ Retrieves top-K KB chunks from Chroma, sends them to OpenAI with a
 citation-emitting system prompt, and filters sources down to the ones
 the model actually cited.
 """
-# claude-assisted: full module — composes retrieve() with a citation-emitting
+# claude-assisted with most of the module; composes retrieve() with a citation-emitting
 # system prompt and calls OpenAI for the live "Ask Questions" chat.
 
 from __future__ import annotations
@@ -15,9 +15,11 @@ from functools import lru_cache
 
 from .retriever import retrieve
 
-TOP_K = 5
-OPENAI_MODEL = "gpt-4o-mini"
+TOP_K = 5 # written by Madison
+OPENAI_MODEL = "gpt-4o-mini" # written by Madison
 
+# Claude assisted with overall prompt. Madison debugged relational precison, hallucinated sources,
+# tone, and compare/contrast structure. 
 SYSTEM_PROMPT = (
     "You are SkinSight AI, a dermatology study assistant for medical students. "
     "Answer the user's question using ONLY the numbered context passages "
@@ -93,6 +95,7 @@ def _format_context_and_sources(
     return "\n\n".join(parts), sources
 
 
+# written by Madison
 @lru_cache(maxsize=1)
 def _openai_client():
     from openai import OpenAI

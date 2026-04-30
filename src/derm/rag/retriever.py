@@ -1,6 +1,6 @@
 """Live retrieval over the prebuilt KB Chroma index built by
 notebooks/03_build_rag_cache.ipynb."""
-# claude-assisted: full module — wraps the offline-built Chroma index for
+# # claude-assisted with most of the module; wraps the offline-built Chroma index for
 # runtime retrieval and returns the metadata shape the chat bubble expects.
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 
 @lru_cache(maxsize=1)
+# function written by Madison
 def _vectorstore() -> Chroma:
     return Chroma(
         persist_directory=str(CHROMA_DIR),
