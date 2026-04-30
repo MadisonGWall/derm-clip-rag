@@ -1,39 +1,55 @@
 # Setup
 
-Step-by-step instructions to run derm-clip-rag locally and deploy to Hugging Face Spaces.
+## Easiest path
 
-## Prerequisites
+**Just open the deployed app — no install, no API key, no dataset access required:**
+
+➡️ **https://madwall-skin-sight-website.hf.space/**
+
+It runs on Hugging Face Spaces' free tier and may take ~30 seconds to wake from sleep on first load. Everything works out of the box: flashcards, the cross-FST display triplet, the "Ask Questions" live RAG chat (the `OPENAI_API_KEY` is provisioned as a Space secret on the deploy).
+
+The rest of this document is for running from source.
+
+---
+
+## Running locally
+
+### Prerequisites
 
 - macOS (tested on Apple Silicon) or Linux
 - ~3 GB free disk space
 - Python 3.11
 - [conda](https://docs.conda.io/en/latest/miniconda.html) (Miniconda or Anaconda)
-- [Ollama](https://ollama.com) — only required if regenerating the cached RAG explanations
-- Stanford DDI dataset access via [Stanford AIMI](https://aimi.stanford.edu/datasets/ddi-diverse-dermatology-images)
+- An **OpenAI API key** for the live "Ask Questions" chat path
+- **One of**:
+  - Stanford DDI dataset access via [Stanford AIMI](https://aimi.stanford.edu/datasets/ddi-diverse-dermatology-images) (full local pipeline), **or**
+  - A Hugging Face token with read access to the private thumbnail dataset (app-only, no rebuild)
 
-## 1. Clone the repo
+> **Note for graders:** thumbnails are stored in a private HF Dataset under Stanford's DUA, so a fresh local clone cannot render flashcard images without one of the two access paths above. Use the deployed Space link instead.
+
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/madigwall/derm-clip-rag.git
 cd derm-clip-rag
 ```
 
-## 2. Create the Python environment
+### 2. Create the Python environment
 
 ```bash
 conda env create -f environment.yml
 conda activate derm-clip
 ```
 
-Verify PyTorch sees your GPU:
+Verify PyTorch sees your accelerator:
 
 ```bash
 python -c "import torch; print('MPS:', torch.backends.mps.is_available(), 'CUDA:', torch.cuda.is_available())"
 ```
 
-## 3. Place the dataset
+### 3. Provide image data (pick one)
 
-After getting access via Stanford AIMI:
+**Option A — DDI dataset (full pipeline).** After getting access via Stanford AIMI:
 
 ```bash
 mkdir -p data/private/images
@@ -43,7 +59,35 @@ mkdir -p data/private/images
 
 `data/private/` is gitignored.
 
-## 4. Run the local pipeline
+**Option B — HF thumbnail snapshot (app only, no rebuild).** Set an HF token with read access to `madwall/ddi-thumbnails-private`:
+
+```bash
+export HF_TOKEN=hf_...
+```
+
+The app will download the snapshot on first launch and cache it.
+
+### 4. Set your OpenAI API key
+
+The live "Ask Questions" chat calls OpenAI `gpt-4o-mini`:
+
+```bash
+export OPENAI_API_KEY=sk-...
+```
+
+### 5. Run the app
+
+```bash
+streamlit run app.py
+```
+
+Opens at http://localhost:8501.
+
+---
+
+## Optional: rebuild artifacts from scratch (DDI dataset required)
+
+These steps regenerate the precomputed embeddings, look-alike statistics, and demo subset. You only need them if you change the dataset or pipeline.
 
 ```bash
 python scripts/01_split_dataset.py        # reference / query split
@@ -54,43 +98,33 @@ python scripts/05_embed_demo.py           # embed demo subset
 python scripts/06_eval.py                 # top-k accuracy + report
 ```
 
-## 5. Generate cached RAG explanations (optional, one-time, requires Ollama)
+### Optional: regenerate cached RAG explanations (requires Ollama)
 
-The flashcard "AI Explanation" text is precomputed and committed at `data/public/rag_cache.json`. You only need to run this if you change the KB markdown files in `data/public/kb/` or the prompt templates in the notebook.
+The flashcard "AI Explanation" text is precomputed and committed at `data/public/rag_cache.json`. You only need this if you change the KB markdown files in `data/public/kb/` or the prompt template.
 
 ```bash
 ollama pull llama3.1:8b
 jupyter notebook notebooks/03_build_rag_cache.ipynb   # then Run All
 ```
 
-Takes ~5 min. (The live "Ask Questions" chat is a separate path that calls OpenAI at runtime — see step 6.)
+Takes ~5 min. The live "Ask Questions" chat is a separate path that calls OpenAI at runtime — see step 4.
 
-## 6. Run the app locally
+---
 
-The live "Ask Questions" chat calls OpenAI `gpt-4o-mini`, so set your OpenAI API key in your shell environment:
-
-```bash
-export OPENAI_API_KEY=sk-...
-```
-
-Then start the app:
-
-```bash
-streamlit run app.py
-```
-
-Opens at http://localhost:8501.
-
-## 7. Deploy to Hugging Face Spaces
+## Deploying your own copy to Hugging Face Spaces
 
 1. Create a free account at https://huggingface.co
 2. New Space: SDK = Streamlit, hardware = CPU basic (free tier)
 3. Connect to your GitHub repo or push to the Space's git remote
 4. Add `OPENAI_API_KEY` as a Space secret (Settings → Variables and secrets → New secret)
-5. HF auto-installs from `requirements.txt` and runs `app.py`
+5. Add `HF_TOKEN` as a Space secret if your thumbnail dataset is private
+6. HF auto-installs from `requirements.txt` and runs `app.py`
+
+---
 
 ## Troubleshooting
 
 - `torch.backends.mps.is_available()` returns False → check macOS ≥ 12.3 and Python is `arm64`.
 - Ollama connection refused → start `ollama serve` in a separate terminal.
 - HF Spaces build fails on torch → pin CPU-only: `torch==2.4 --index-url https://download.pytorch.org/whl/cpu`.
+- Flashcard images don't render locally → you're missing both DDI imagery and a valid `HF_TOKEN`. See step 3.

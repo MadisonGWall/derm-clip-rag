@@ -42,10 +42,21 @@ For full setup, see [SETUP.md](SETUP.md).
 
 ## Video Links
 
-- **Demo video** (non-technical introduction): _TODO_
-- **Technical walkthrough** (for developers - focuses on code structure and architecture): _TODO_
+- **Demo video** (non-technical introduction): https://youtu.be/yvz81WB2qEk
+- **Technical walkthrough** (for developers - focuses on code structure and architecture): 
 
 ## Evaluation
+DDI image counts per condition per Fitzpatrick group, after filtering to the top-7 conditions by sample count.
+<p align="center">
+  <img src="assets/fitzpatrick-frequency.png" alt="alt text" width="80%">
+</p>
+One particular finding is that there are no representation of IV-V in Basal Cell Carcinoma. This was considered when buillding my flashcards and a placeholder acknolwedged the gap rather than hiding it.
+
+<p align="center">
+  <img src="assets/lookalike_heatmap.png" alt="alt text" width="70%">
+</p>
+
+Top-K retrieval accuracy with cosine similarity
 
 | Metric | Score |
 |---|---|
@@ -54,32 +65,23 @@ For full setup, see [SETUP.md](SETUP.md).
 | Top-5 retrieval accuracy | 72.6% |
 | Most common look-alike pair | Seborrheic Keratosis and Melanocytic Nevi (12 mutual confusions)|
 
-Full methodology and results: `data/public/eval_results.json` and `notebooks/03_lookalike_analysis.ipynb`.
+In terms of *quantitative evaluation*, I evaluated the visual similarity of images through scoring the top-k retrieval accuracy which means counting if the correct conditions appears in the top k. To do this, I performed CLIP image-image retrieval on an 80/20 reference/query split. So for each query image, I found the K nearest neighbors in the reference set by cosine similarity and then found the top-k retrieval accuracy of that. I found that on the filtered DDI subset, the model reaches retrieval accuracy of 28.8% for Top-1, 60.3% for Top-3 and 72.6% for Top-5. While the retrieval accuracy is low for top-1, it is 2 times random chance for 7 classes. But the large increase in accuracy from Top-1 to Top-3 suggests that CLIP is finding visually plausible matches even if the exact label is not necessarily ranked first. This reinforces my framing of the project as a study aid based on visual-similarity rather than classifying a diagnosis. The most frequent confusion pair was Seborrheic Keratosis and Melanocytic Nevi which had 12 mutual confusions. As we can see in the heatmap, this pair had a high visual similarity on average (78%) but three other pairings were actually higher. Two out of three of those pairings involved Seborrheic Keratosis so this seems to be commonly visually confused with other conditions in our dataset. Interestingly, Seborrheic Keratosis and Melanocytic Nevi are not only visually confusing to the CLIP model but are also commonly confused in clinical practice. This may indicate that the CLIP model is finding actual visual-feature overlap signal rather than noise but we can't determine this from our data.
 
-![alt text](assets/lookalike_heatmap.png)
 
-DDI image counts per condition per Fitzpatrick group, after filtering to the top-7 conditions by sample count.
+<p align="center">
+  <img src="assets/qualitative-images.png" alt="alt text" width="40%">
+</p>
 
-| Condition | FST I/II | FST III/IV | FST V/VI |
-|---|---:|---:|---:|
-| Melanocytic Nevi | 47 | 49 | 23 |
-| Seborrheic Keratosis | 21 | 18 | 19 |
-| Verruca Vulgaris | 26 | 7 | 17 |
-| Epidermal Cyst | 16 | 5 | 14 |
-| Squamous Cell Carcinoma In Situ | 15 | 10 | 3 |
-| Mycosis Fungoides | 3 | 3 | 26 |
-| Basal Cell Carcinoma | 7 | 34 | **0** |
+In terms of *qualitative evaluation*, we can analyze this panel above which shows a test query of cosine similarity for a particular image. We can see that the query tends to have similar surface cues like pigmentation and lesion border but there does appear to be some diversity in similar images so it's not solely based on skin tone. Learners new to dermatology may make similar visual confusions to a vision encoder since both are working from raw visual cues without clinical knowledge so this could support using these conditions as distractors. However, since we didn't apply interpretability methods like saliency maps, we can't verify which visual features are being prioritized by the encoder. Similar to a pattern we saw earlier, the most common confusion for the query Seborrheic Keratosis was Melanocytic Nevi (similarity of 91.9%). Based on the images in the panel, it seems to me that these appear to have similar patterns and could be reasonable neighbors.
 
-Since there were no examples of Basal Cell Carcinoma on the FST V/VI group, in the UI we indicate that there was "No FST V/VI sample in DDI" placeholder rather than just hiding this group to indicate the underrepresentation in the sample.
-
-![alt text](assets/qualitative-images.png)
+Full results: `data/public/eval_results.json` and `notebooks/03_lookalike_analysis.ipynb`.
 
 ### Design Choices
 1. Educational tool vs. classification
 -  I initially planned on improving classification accuracy of skin disease using a CLIP model. But I decided that with the small size of the training dataset (~656 images) and the fact that I wanted to improve representation in this space, that an educational tool better fit my goals.
 2. CLIP image-encoder only vs. ResNet/CNN
 - I used CLIP's image encoder only so embeddings would only be based on visual features, not condition labels. This better supported my goal of visual similarity search since I ensured that similarity wasn't based on the text description of a condition. Used CLIP's pretrained representations 
-- CLIP's pretraning was on a larger, more diverse dataset. ResNets ignore features that may not help a specific classification task while CLIP forces encoders to preserve any feature which makes it more suitable for my feature extraction task. 
+- CLIP's pretraining was on a larger, more diverse dataset. ResNets ignore features that may not help a specific classification task while CLIP forces encoders to preserve any feature which makes it more suitable for my feature extraction task. 
 
 ## Architecture
 
@@ -100,7 +102,6 @@ Local pipeline runs once on the developer's machine. The deployed app reads prec
 ## Limitations
 
 - **Conditions being visually similar isn't the same as being commonly confused clinically**. The photography of the image like lighting, scale, or skin tone could be contributing to why images of ocnditions are on average closer together rather than shape of lesions. These are visual lookalikes from CLIP not necessarily clinical lookalikes.
-- **CLIP model doesn't have medical domain pretraining.** I could've used a CNN fine tuned on dermatology or a domain-specialized model to potentially produce more meaningful embeddings.
 - **Only include seven conditions.** Some other major conditions like melanoma are not a part of the conditions used in this learning tool.
 - **Missing data for BCC.** There are no images of people with darker skin tones who have BCC in this dataset so it would more difficult for people to learn how to diagnose this condition. 
 - **KB is only based on DermNet.** Most of RAG explanations come from a single source or two sources for comparisons since there is one article on each condition in the KB. Incorporating articles from other sources like the AAD would make explanations more accurate.

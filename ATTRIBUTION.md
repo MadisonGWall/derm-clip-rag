@@ -40,16 +40,24 @@ Tadesse, G. A., Cintas, C., Varshney, K. R., Staar, P., Agunwa, C., Speakman, S.
 
 ## AI Assistance Disclosure
 
-Developed with assistance from **Claude (Anthropic)** for:
-- Design discussion and architecture planning
-- Boilerplate code generation (`src/`, `scripts/`)
-- Documentation drafting
-- Creating the web app
+Throughout this project, I used the following chatbots: Anthropic's Opus 4.7, Anthropic's Sonnet 4.6, and OpenAI's GPT-5.3.
 
-I used OpenAI's ChatGPT for:
-- Generating mockups of the website
-- Refining my prompt engineering for RAG
+I decided on my topic and then researched dermatological conditions and models alone. Then during the drafting phase of my project, I consulted Claude to understand if the project scope and architecture choices were feasible. I'd heard of using Gradio so I suggested that but Claude recommended Streamlit over Gradio since I wanted more complex layout control for my flashcards.
 
-I reviewed, modified, and tested all AI-generated code. I verified clinical content in the knowledge base against DermNet source material. I'm responsible for design decisions and the final code.
+ I knew that I wanted to use LangChain for my RAG implementation and CLIP visual similarity. But I wasn't sure how to set up a private dataset in HF since my dataset is behind an authentication wall, so Claude was helpful in letting me know that was possible.
 
-I wrote the text for the website and then used AI to refine it.
+ I used Claude, primarily through Opus 4.7, almost exclusively when generating app.py. I don't have experience with front end development but I'm familar with Python so I was able to review the Streamlit code. At times, I felt like Cluade would try to put in a bunch of edge cases and if statemnets in the code like to get the nav bar to have a certain amount of padding. In times like these, I would ask is there a simpler structural change we can make instead of adding edge cases? And I found this was far more effective throughout the debugging process. I had to substantially rework the flashcard elements myself by referencing doccumentation and prompting Claude with my code edits to iterate until we got workable filters and buttons.
+
+ I knew what I wanted in my Jupyter Notebooks and how to set up the pipelines. I had an initial Jupyter notebook in another project so I asked Claude to help me decide how to separate this into a cleaner format and to generate boiler plate for the notebook so I could stay on track with my plan.
+
+ Whenever, I wasn't sure high level about how to proceed with my project like when deciding how to incorporate the images in the flashcards from HF dataset, I would ask Claude to ask questions until we were confident in the plan. This was helpful for brainstorming.
+
+ I used Claude for boilerplate code generation (`src/`, `scripts/`) but I was specific about what was fully written by Claude and what was written by me.
+
+ I found that ChatGPT was better at debugging my code for small errors while Claude was helpful for the big picture. I used ChatGPT to generate mockups for the website so I could better communicate my vision to Claude. I also used ChatGPT to refine my prompt engineering for RAG when I was having difficult time getting the right citations for the Q&A. I kept having the same source cited 5 times and less diversity with the chunks so it suggested using lambda and then I fine tuned that parameter until I felt comfortable.
+
+I reviewed, modified, and tested all the AI-generated code. 
+
+I created a template.md which is no longer in this project since its redundant to indicate the format for the markdown files of DermNet articles. Then I aksed Claude to organize the content from the website that I provide into this format. I verified the text in the markdown files iwth the DermNet source material before moving on.
+
+Ocassionally, I used AI to help me condense my writing by telling me what sentences were redundant. I also developed a punchy tagline in the hero banner by going back and forth with ChatGPT in iterations.
