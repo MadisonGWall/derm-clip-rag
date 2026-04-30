@@ -50,7 +50,7 @@ DDI image counts per condition per Fitzpatrick group, after filtering to the top
 <p align="center">
   <img src="assets/fitzpatrick-frequency.png" alt="alt text" width="80%">
 </p>
-One particular finding is that there are no representation of IV-V in Basal Cell Carcinoma. This was considered when buillding my flashcards and a placeholder acknolwedged the gap rather than hiding it.
+One particular finding is that there are no representation of V-VI in Basal Cell Carcinoma. This was considered when buillding my flashcards and a placeholder acknolwedged the gap rather than hiding it.
 
 <p align="center">
   <img src="assets/lookalike_heatmap.png" alt="alt text" width="70%">
