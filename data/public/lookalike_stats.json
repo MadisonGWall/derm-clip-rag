@@ -1,0 +1,77 @@
+{
+  "model_id": "ViT-B-32-quickgelu/openai",
+  "conditions": [
+    "Melanocytic Nevi",
+    "Seborrheic Keratosis",
+    "Verruca Vulgaris",
+    "Basal Cell Carcinoma",
+    "Epidermal Cyst",
+    "Mycosis Fungoides",
+    "Squamous Cell Carcinoma In Situ"
+  ],
+  "matrix": {
+    "Melanocytic Nevi": {
+      "Melanocytic Nevi": 0.7835,
+      "Seborrheic Keratosis": 0.7849,
+      "Verruca Vulgaris": 0.7768,
+      "Basal Cell Carcinoma": 0.7671,
+      "Epidermal Cyst": 0.7581,
+      "Mycosis Fungoides": 0.7375,
+      "Squamous Cell Carcinoma In Situ": 0.7694
+    },
+    "Seborrheic Keratosis": {
+      "Melanocytic Nevi": 0.7849,
+      "Seborrheic Keratosis": 0.8025,
+      "Verruca Vulgaris": 0.7892,
+      "Basal Cell Carcinoma": 0.7817,
+      "Epidermal Cyst": 0.7649,
+      "Mycosis Fungoides": 0.7491,
+      "Squamous Cell Carcinoma In Situ": 0.7884
+    },
+    "Verruca Vulgaris": {
+      "Melanocytic Nevi": 0.7768,
+      "Seborrheic Keratosis": 0.7892,
+      "Verruca Vulgaris": 0.789,
+      "Basal Cell Carcinoma": 0.7831,
+      "Epidermal Cyst": 0.7614,
+      "Mycosis Fungoides": 0.7525,
+      "Squamous Cell Carcinoma In Situ": 0.7811
+    },
+    "Basal Cell Carcinoma": {
+      "Melanocytic Nevi": 0.7671,
+      "Seborrheic Keratosis": 0.7817,
+      "Verruca Vulgaris": 0.7831,
+      "Basal Cell Carcinoma": 0.8049,
+      "Epidermal Cyst": 0.7591,
+      "Mycosis Fungoides": 0.749,
+      "Squamous Cell Carcinoma In Situ": 0.7853
+    },
+    "Epidermal Cyst": {
+      "Melanocytic Nevi": 0.7581,
+      "Seborrheic Keratosis": 0.7649,
+      "Verruca Vulgaris": 0.7614,
+      "Basal Cell Carcinoma": 0.7591,
+      "Epidermal Cyst": 0.7533,
+      "Mycosis Fungoides": 0.7329,
+      "Squamous Cell Carcinoma In Situ": 0.7558
+    },
+    "Mycosis Fungoides": {
+      "Melanocytic Nevi": 0.7375,
+      "Seborrheic Keratosis": 0.7491,
+      "Verruca Vulgaris": 0.7525,
+      "Basal Cell Carcinoma": 0.749,
+      "Epidermal Cyst": 0.7329,
+      "Mycosis Fungoides": 0.7762,
+      "Squamous Cell Carcinoma In Situ": 0.7451
+    },
+    "Squamous Cell Carcinoma In Situ": {
+      "Melanocytic Nevi": 0.7694,
+      "Seborrheic Keratosis": 0.7884,
+      "Verruca Vulgaris": 0.7811,
+      "Basal Cell Carcinoma": 0.7853,
+      "Epidermal Cyst": 0.7558,
+      "Mycosis Fungoides": 0.7451,
+      "Squamous Cell Carcinoma In Situ": 0.7952
+    }
+  }
+}

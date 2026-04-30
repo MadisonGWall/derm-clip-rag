@@ -1,0 +1,58 @@
+{
+  "Melanocytic Nevi": {
+    "definition": "Well-defined, brown to black macules or papules with a smooth surface and uniform pigmentation.",
+    "feedback": {
+      "Melanocytic Nevi": "Correct \u2014 Melanocytic Nevi are benign growths composed of melanocytes that can be found on sun-exposed areas and appear as well-defined, brown or black spots with a smooth surface and regular borders. We can identify Melanocytic Nevi by their characteristic \"dotted\" appearance due to the presence of small, pigmented nests within the epidermis. Typically, no treatment is necessary unless they become irritated or inflamed, in which case topical corticosteroids may be prescribed.",
+      "Seborrheic Keratosis": "Close \u2014 this is Melanocytic Nevi. Melanocytic Nevi has a well-defined border while Seborrheic Keratosis has an irregular edge. Typically, Melanocytic Nevi are left alone unless they change in size or color, at which point a dermatologist would assess them further for any potential abnormalities.",
+      "Verruca Vulgaris": "Close \u2014 this is Melanocytic Nevi. Melanocytic Nevi has a well-defined border while Verruca Vulgaris has an irregular edge. Melanocytic Nevi can be treated with shave excision, and their appearance may vary across different skin tones, but typically they are removed for cosmetic reasons."
+    }
+  },
+  "Seborrheic Keratosis": {
+    "definition": "Well-defined, brown to tan, oval-shaped papules with a rough, verrucous surface and a distinct peripheral scale.",
+    "feedback": {
+      "Seborrheic Keratosis": "Correct \u2014 Seborrheic Keratosis are benign growths that appear as well-defined, oval-shaped lesions with a rough, scaly surface and a characteristic \"stuck-on\" appearance; they can be tan, brown, or black in color but may also have a pinkish hue. Their appearance is not significantly affected by skin tone variation. They usually require removal through cryotherapy, shave excision, or electrodessication to prevent further growth and potential irritation.",
+      "Verruca Vulgaris": "This shows Seborrheic Keratosis. It has a well-defined, verrucous surface while Verruca Vulgaris has a more irregular and rough texture. Typically, Seborrheic Keratosis is removed with cryotherapy or shave excision to prevent regrowth.",
+      "Squamous Cell Carcinoma In Situ": "Close \u2014 this is Seborrheic Keratosis, a benign growth worth monitoring due to its potential resemblance to more serious conditions like Squamous Cell Carcinoma In Situ. Seborrheic Keratosis has a well-defined border while Squamous Cell Carcinoma In Situ has an irregular edge. Typically, Seborrheic Keratosis is removed with cryotherapy or shave excision for cosmetic reasons."
+    }
+  },
+  "Verruca Vulgaris": {
+    "definition": "Small, rough, hyperkeratotic papules with a central depression and a well-defined, verrucous surface.",
+    "feedback": {
+      "Verruca Vulgaris": "Correct \u2014 Verruca Vulgaris is a common skin growth caused by human papillomavirus infection, typically presenting as a well-defined, pearly, or translucent nodule usually 2-10 mm in diameter with a smooth surface and no distinct borders. We can identify Verruca Vulgaris by its characteristic appearance on the hands, feet, or face, often without significant skin tone variation. Treatment usually involves cryotherapy to freeze and remove the lesion.",
+      "Seborrheic Keratosis": "This shows Verruca Vulgaris. It has a well-defined, papular shape with a rough surface texture, while Seborrheic Keratosis has an irregular, verrucous appearance. Treatment usually involves cryotherapy to freeze the lesion and remove it from the skin.",
+      "Basal Cell Carcinoma": "Close \u2014 this is Verruca Vulgaris, a benign condition that can be treated with cryotherapy to prevent scarring. Verruca Vulgaris has a well-defined border while Basal Cell Carcinoma has an irregular edge. Typically, Verruca Vulgaris appears in fair-skinned individuals and treatment usually involves freezing the lesion with liquid nitrogen."
+    }
+  },
+  "Basal Cell Carcinoma": {
+    "definition": "Well-defined, pearly papule with telangiectasias and a rolled border on sun-exposed skin.",
+    "feedback": {
+      "Basal Cell Carcinoma": "Correct \u2014 Basal Cell Carcinoma is a slow-growing skin cancer that usually appears as a small, shiny bump or nodule on sun-exposed areas, often with a pearly appearance and well-defined borders; we can identify it by its characteristic translucent or waxy texture. The appearance of Basal Cell Carcinoma may vary slightly depending on the individual's skin tone, but typically remains relatively consistent in coloration. Treatment usually involves surgical excision to remove the tumor completely.",
+      "Squamous Cell Carcinoma In Situ": "Close \u2014 this is Basal Cell Carcinoma, a common and usually harmless skin cancer worth catching. Basal Cell Carcinoma has well-defined borders while Squamous Cell Carcinoma In Situ has irregular margins. Treatment typically involves surgical excision or Mohs surgery to remove the tumor completely.",
+      "Verruca Vulgaris": "Close \u2014 this is Basal Cell Carcinoma, a skin cancer worth catching if left untreated. Basal Cell Carcinoma has a well-defined border while Verruca Vulgaris has an irregular shape. Treatment usually involves surgical excision or Mohs surgery to remove the tumor completely and prevent recurrence."
+    }
+  },
+  "Epidermal Cyst": {
+    "definition": "Well-defined, smooth, dome-shaped papule with a thin epidermal covering and a small central punctum.",
+    "feedback": {
+      "Epidermal Cyst": "Correct \u2014 Epidermal Cyst is a benign, well-defined, smooth, and pearly skin lesion that usually appears as a small, dome-shaped bump on the skin surface, often containing a clear or cloudy fluid-filled sac. We can identify Epidermal Cysts by their characteristic appearance, which may vary in color depending on the individual's skin tone, with some appearing lighter or darker than surrounding skin. Treatment typically involves surgical excision to remove the cyst and prevent recurrence.",
+      "Seborrheic Keratosis": "Close \u2014 this is Epidermal Cyst. It usually presents as a well-defined, smooth, and firm nodule on the skin surface, whereas Seborrheic Keratosis has an irregular, rough texture that can be scaly or warty in appearance. Typically, Epidermal Cysts are treated with simple excision or drainage to prevent recurrence, but no specific treatment is usually required for Seborrheic Keratoses unless they become irritated or inflamed.",
+      "Verruca Vulgaris": "Close \u2014 this is Epidermal Cyst. It usually presents as a well-defined, smooth dome-shaped lesion with a pearly appearance, whereas Verruca Vulgaris has irregular borders and a rough surface. Typically, an Epidermal Cyst can be treated with simple excision or drainage, but it's essential to note that skin tone variation is not typically associated with this condition."
+    }
+  },
+  "Mycosis Fungoides": {
+    "definition": "Well-defined, erythematous patches with a characteristic \"salmon-pink\" hue and scaling or crusting in various stages of evolution.",
+    "feedback": {
+      "Mycosis Fungoides": "Correct \u2014 Mycosis Fungoides is a type of cutaneous T-cell lymphoma that usually presents as well-defined, scaly patches or plaques on sun-exposed areas, often with a characteristic \"penny-on-a-mushroom\" appearance due to the presence of small, pearly papules. We can identify Mycosis Fungoides by its distinctive skin lesions and history of chronic, progressive disease. Treatment typically involves topical corticosteroids or other immunosuppressive agents to manage symptoms and slow disease progression.",
+      "Verruca Vulgaris": "Close \u2014 this is Mycosis Fungoides, a type of cutaneous T-cell lymphoma worth catching early due to its potential for progression. Mycosis Fungoides has well-defined patches on sun-exposed areas while Verruca Vulgaris has irregular, pearly papules. Treatment usually involves topical corticosteroids or phototherapy, and skin tone variation is not a characteristic feature of this condition.",
+      "Seborrheic Keratosis": "Close \u2014 this is Mycosis Fungoides, a cutaneous T-cell lymphoma worth catching if left untreated. Mycosis Fungoides has well-defined patches of eczema-like skin lesions while Seborrheic Keratosis has irregularly shaped, rough-textured growths that can be brown or tan in color. Treatment for Mycosis Fungoides usually involves topical corticosteroids and phototherapy to manage symptoms and slow disease progression."
+    }
+  },
+  "Squamous Cell Carcinoma In Situ": {
+    "definition": "Well-defined, flat-topped papules with a verrucous surface and scattered atypical keratinocytes.",
+    "feedback": {
+      "Squamous Cell Carcinoma In Situ": "Correct \u2014 Squamous Cell Carcinoma In Situ is a non-invasive skin cancer that appears as well-defined, flat red or pink patches with a pearly appearance and fine scaling; we can identify it by its characteristic shiny surface and subtle keratinocyte atypia. The appearance of Squamous Cell Carcinoma In Situ may vary slightly depending on the individual's skin tone, but generally, it is most noticeable in lighter-skinned individuals where it tends to appear as a pinkish patch. Treatment usually involves surgical excision or Mohs surgery to remove the affected area and prevent potential",
+      "Seborrheic Keratosis": "Close \u2014 this is Squamous Cell Carcinoma In Situ, a skin cancer worth catching if left untreated. Squamous Cell Carcinoma In Situ has well-defined borders while Seborrheic Keratosis has irregular edges. Treatment for Squamous Cell Carcinoma In Situ usually involves Mohs surgery or wide local excision to remove the affected area completely.",
+      "Basal Cell Carcinoma": "This shows Squamous Cell Carcinoma In Situ, a skin cancer worth catching if left untreated. It has well-defined borders and a pearly appearance, while Basal Cell Carcinoma typically has irregular borders and a translucent appearance. Treatment usually involves surgical excision or Mohs surgery to remove the affected area completely."
+    }
+  }
+}

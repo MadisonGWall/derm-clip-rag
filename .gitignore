@@ -1,0 +1,57 @@
+# --- PRIVACY: NEVER commit anything in data/private/ ---
+# Full Stanford DDI dataset + embeddings derived from full set
+# stay local only.
+data/private/
+
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual envs (we use conda but ignore venv/ just in case)
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Chroma working dirs (we ship a built kb_chroma/ but ignore other chroma artifacts)
+chroma_db/
+*.chroma_temp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# HF Spaces local caches
+.cache/
+huggingface/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Misc large files we might generate during exploration
+*.pt.bak
+*.npy.bak
+scratch/

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 110" fill="none" role="img" aria-label="SkinSight AI">
+  <defs>
+    <!-- Subtle diagonal ring gradient: lighter top-left → deeper bottom-right -->
+    <linearGradient id="ring" x1="0.15" y1="0.1" x2="0.9" y2="0.95">
+      <stop offset="0"   stop-color="#C4B0FC"/>
+      <stop offset="0.5" stop-color="#A78BFA"/>
+      <stop offset="1"   stop-color="#8B6EE8"/>
+    </linearGradient>
+    <!-- Sparkle: pink top half → violet bottom half -->
+    <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#F472B6"/>
+      <stop offset="0.5"  stop-color="#C084FC"/>
+      <stop offset="1"    stop-color="#8B6EE8"/>
+    </linearGradient>
+    <!-- Vertical gradient for "AI" — userSpaceOnUse so the color band sits at
+         the same y across both A and I (not per-letter). -->
+    <linearGradient id="aiGrad" gradientUnits="userSpaceOnUse"
+                    x1="0" y1="35" x2="0" y2="72">
+      <stop offset="0"   stop-color="#F472B6"/>
+      <stop offset="0.5" stop-color="#A78BFA"/>
+      <stop offset="1"   stop-color="#4F46E5"/>
+    </linearGradient>
+    <clipPath id="lensClip">
+      <circle cx="55" cy="55" r="36"/>
+    </clipPath>
+  </defs>
+
+  <!-- ===== Magnifying glass ===== -->
+
+  <!-- 1) Dark handle drawn FIRST. The top point sits inside the lens so
+       the rounded line-cap is hidden by the white lens fill on top. -->
+  <line x1="68" y1="68" x2="103" y2="103"
+        stroke="#1F2937" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- 2) Lens fill — covers the upper portion of the handle. -->
+  <circle cx="55" cy="55" r="36" fill="#FFFFFF"/>
+
+  <!-- 3) Wave bands (stacked back-to-front; each "top wave" reveals a band
+       of the layer behind it). Heights tuned to match the brand asset:
+       peach tall, coral tall, pink thin, purple thicker, light-pink sliver. -->
+  <g clip-path="url(#lensClip)">
+    <!-- Layer 1: Peach — bold up-down-up-down wave -->
+    <path d="M15 62 Q 25 56 35 62 Q 45 68 55 62 Q 65 56 75 62 Q 85 68 95 62 V 92 H 15 Z"
+          fill="#FFD6A5"/>
+
+    <!-- Layer 2: Coral — phase-shifted wave for organic feel -->
+    <path d="M15 73 Q 23 78 32 73 Q 41 68 50 73 Q 59 78 68 73 Q 77 68 86 73 Q 92 76 95 73 V 92 H 15 Z"
+          fill="#FFB8A2"/>
+
+    <!-- Layer 3: Purple — single gentle wave -->
+    <path d="M15 81 Q 35 77 55 81 T 95 81 V 92 H 15 Z"
+          fill="#A78BFA"/>
+
+    <!-- Layer 4: Light pink — bottom, single gentle wave -->
+    <path d="M15 87 Q 35 84 55 87 T 95 87 V 92 H 15 Z"
+          fill="#F8B5D0"/>
+  </g>
+
+  <!-- 4) Pink sparkle inside the lens (top-left area) -->
+  <path d="M40 32 L42 39 L49 41 L42 43 L40 50 L38 43 L31 41 L38 39 Z"
+        fill="url(#spark)"/>
+
+  <!-- 5) Lens ring — drawn last so it sits on top of the handle's exit
+       point at the lens edge. -->
+  <circle cx="55" cy="55" r="36" fill="none" stroke="url(#ring)" stroke-width="6"/>
+
+  <!-- ===== Wordmark ===== -->
+  <text x="125" y="70"
+        font-family="Poppins, Inter, system-ui, sans-serif"
+        font-weight="700"
+        font-size="44"
+        letter-spacing="-1"
+        fill="#1F2937">SkinSight</text>
+  <text x="325" y="70"
+        font-family="Poppins, Inter, system-ui, sans-serif"
+        font-weight="700"
+        font-size="44"
+        letter-spacing="-1"
+        fill="url(#aiGrad)">AI</text>
+</svg>
