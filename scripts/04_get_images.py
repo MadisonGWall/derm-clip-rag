@@ -1,4 +1,4 @@
-# Written by Madison Wall with some assistance by ChatGPT
+# Written by Madison Wall with line debugging assistance by ChatGPT
 import pandas as pd
 import json
 from pathlib import Path

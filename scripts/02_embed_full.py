@@ -3,12 +3,9 @@
 """
 Embed every DDI image with CLIP and save to data/private/embeddings_full.pt.
 
-Run once locally on your Mac (MPS):
-    cd /Users/madisonwall/Downloads/ml_final/derm-clip-rag
-    conda activate derm-clip
-    python scripts/02_embed_full.py
+Ran once locally using MPS. Make sure to switch to cuda if using NVIDIA GPU.
 
-Output is private (gitignored). Upload to the private HF Dataset later.
+Output is private (gitignored) to ensure I don't publish the dataset.  Uploaded to private HF Dataset later.
 """
 
 from pathlib import Path
@@ -19,6 +16,7 @@ import torch
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 
+# claude-assisted in writing root and directory code here
 ROOT = Path(__file__).resolve().parents[1]
 LABELS_CSV = ROOT / "data" / "private" / "labels.csv"
 IMAGES_DIR = ROOT / "data" / "private" / "images"
@@ -36,13 +34,13 @@ class DermImageDataset(Dataset):
         self.label_col = label_col
         self.transform = transform
 
-    def __len__(self):
+    def __len__(self): # claude-assisted
         return len(self.df)
 
     def __getitem__(self, index):
         row = self.df.iloc[index]
         fname = row["DDI_file"]
-        image = Image.open(self.image_dir / fname).convert("RGB")
+        image = Image.open(self.image_dir / fname).convert("RGB") # claude-assisted with RGB
         return self.transform(image), row[self.label_col], fname, int(row["skin_tone"])
 
 
@@ -51,7 +49,7 @@ def clean_labels(df):
     df["disease_clean"] = s.str.replace("(Nm)", "(NM)", regex=False)
     return df
 
-
+# Madison wrote the embedding code and data loading loop. Claude assisted with line debugging.
 def main():
     device = "mps" if torch.backends.mps.is_available() else "cpu"
     print(f"Device: {device}")
@@ -93,6 +91,6 @@ def main():
     print(f"Embedded {embeddings.shape[0]} images, dim={embeddings.shape[1]}")
     print(f"Saved → {OUT_PATH.relative_to(ROOT)}")
 
-
+# claude-assisted: added main guard
 if __name__ == "__main__":
     main()

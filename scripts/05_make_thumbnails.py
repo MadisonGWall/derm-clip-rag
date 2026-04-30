@@ -1,5 +1,5 @@
-# claude-assisted: builds CLIP-style center-cropped square thumbnails for the
-# flashcard tiles. Reads image_map.json, picks first up to 3 filenames per FST
+# Entirely written by Claude with prompting by Madison. Builds CLIP-style center-cropped square 
+# thumbnails for the flashcard tiles. Reads image_map.json, picks first up to 3 filenames per FST
 # bucket (deterministic; the same indices always map to the same rounds), and
 # writes 300x300 JPGs to data/private/thumbnails/<slug>/round-<a|b|c>/<fst>.jpg.
 # Empty buckets (e.g. Basal Cell Carcinoma FST 56) are skipped silently — the

@@ -28,8 +28,8 @@ def main() -> None:
     filtered = df[clean.isin(top_conditions)].reset_index(drop=True)
     after_n = len(filtered)
 
-    # Atomic write: temp file + rename, so a crash mid-write doesn't corrupt
-    # the original CSV.
+    # claude-assisted: atomic write: temp file + rename, so a crash mid-write
+    # doesn't corrupt the original CSV.
     tmp = LABELS_PATH.with_suffix(".csv.tmp")
     filtered.to_csv(tmp, index=False)
     tmp.replace(LABELS_PATH)

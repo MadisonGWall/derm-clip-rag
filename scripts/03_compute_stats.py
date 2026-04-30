@@ -1,13 +1,10 @@
-# claude-assisted: condition-pair mean cosine similarity from embeddings_full.pt
+# claude-assisted with scaffolding & deciding to save to JSON instead of CSV
 """
 Compute pairwise mean cosine similarity between the top-7 condition groups
 and save aggregate stats to data/public/lookalike_stats.json.
 
-Aggregate floats only — no per-image data — so the output is DUA-safe and
-ships in the public GitHub repo.
-
-Run:
-    python scripts/03_compute_stats.py
+Aggregate floats only — no per-image data — so the output is safe to ship
+in the public GitHub repo.
 """
 
 import json
@@ -15,6 +12,7 @@ from pathlib import Path
 
 import torch
 
+# claude-assisted: writing directory & path code
 ROOT = Path(__file__).resolve().parents[1]
 EMB_PATH = ROOT / "data" / "private" / "embeddings_full.pt"
 TOP_PATH = ROOT / "data" / "public" / "top_conditions.json"
@@ -22,7 +20,7 @@ OUT_PATH = ROOT / "data" / "public" / "lookalike_stats.json"
 
 
 def main():
-    # embeddings_full.pt is pre-filtered to the top-7 conditions at source
+    # Note: embeddings_full.pt is already pre-filtered to the top-7 conditions 
     # by scripts/01_filter_labels.py.
     data = torch.load(EMB_PATH)
     embeddings = data["embeddings"]
@@ -42,6 +40,7 @@ def main():
             sim = emb_by_cond[a] @ emb_by_cond[b].T
             matrix[a][b] = round(sim.mean().item(), 4)
 
+    # claude-assisted: saving as JSON and printing top-2 lookalikes per condition
     OUT_PATH.write_text(json.dumps({
         "model_id": data["model_id"],
         "conditions": top_conditions,
