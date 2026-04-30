@@ -2661,7 +2661,7 @@ def render_nav() -> None:
                 {"label": "Flashcards", "page": "flashcards"},
                 {"label": "Ask Questions", "page": "ask"},
                 {"label": "Code ↗",
-                 "url": "https://github.com/madigwall/derm-clip-rag"},
+                 "url": "https://github.com/MadisonGWall/derm-clip-rag"},
             ]
             nl = st.columns(len(nav_items), vertical_alignment="center")
             for i, item in enumerate(nav_items):
