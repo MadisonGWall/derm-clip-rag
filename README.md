@@ -1,16 +1,4 @@
----
-title: SkinSight AI
-emoji: 🔬
-colorFrom: purple
-colorTo: pink
-sdk: streamlit
-sdk_version: "1.56.0"
-app_file: app.py
-pinned: false
-short_description: Visual dermatology learning with CLIP retrieval and RAG
----
-
-# SkinSight AI: Visual Dermatology Learning
+# 🔬 SkinSight AI: Visual Dermatology Learning
 
 >  SkinSight AI is an interactive study tool that helps students learn to visually diagnose skin conditions with more diverse representation than typical materials. It pairs CLIP visual similarity (to determine lookalike-based distractors) with RAG over DermNet (for grounded explanations).
 
